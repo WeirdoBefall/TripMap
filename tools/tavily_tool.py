@@ -12,13 +12,13 @@ client = TavilyClient(
 def tavily_search(query):
     response = client.search(
         query=query,
-        max_results=5
+        max_results=3
         )
 
     results = []
 
     for i, r in enumerate(response["results"], 1):
-        title = r.get("title", "Unknown")
+        title = r.get("title", "未命名来源")
         url = r.get("url", "")
         snippet = r.get("content", "").strip()
 

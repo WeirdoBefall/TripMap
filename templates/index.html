@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TripMap 智能旅行规划</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <div class="page-bg">
+        <div class="gradient-circle circle-1"></div>
+        <div class="gradient-circle circle-2"></div>
+        <div class="gradient-circle circle-3"></div>
+    </div>
+
+    <main class="app-container">
+
+        <section class="hero-section">
+            <div class="badge">
+                ✈️ TripMap · 智能旅行规划助手
+            </div>
+
+            <h1>
+                让每一程，都有好安排
+            </h1>
+
+            <p>
+                查询航班、发现心仪酒店，用一句话生成完整的中文旅行方案。
+            </p>
+        </section>
+
+        <section class="planner-card">
+
+            <div class="card-header">
+                <div>
+                    <h2>这次想去哪里？</h2>
+                    <p>
+                        例如：从北京去东京玩七天，预算一万元，帮我安排航班、酒店和景点。
+                    </p>
+                </div>
+
+                <div class="status-pill">
+                    <span class="status-dot"></span>
+                    服务在线
+                </div>
+            </div>
+
+            <div class="input-area">
+                <textarea
+                    id="userInput"
+                    aria-label="旅行需求"
+                    placeholder="告诉我出发地、目的地、出行天数和预算，例如：从上海去日本玩五天，预算八千元，喜欢美食和自然风景……"
+                ></textarea>
+
+                <button id="sendBtn" onclick="sendMessage()">
+                    <span id="btnText">生成旅行方案</span>
+                    <span id="btnLoader" class="loader hidden"></span>
+                </button>
+            </div>
+
+            <p class="input-hint">只填国家时查询首都机场，填写城市时覆盖该城市的多个机场。航班结果为实时状态，机票报价请以购票平台为准。按 Ctrl + Enter 可提交。</p>
+
+            <div class="quick-prompts">
+                <button onclick="setPrompt('从北京去东京玩七天，预算一万元，请安排航班、酒店和景点。')">
+                    东京七日游
+                </button>
+
+                <button onclick="setPrompt('从上海去迪拜旅行五天，请推荐航班、酒店和观光行程。')">
+                    迪拜五日游
+                </button>
+
+                <button onclick="setPrompt('从广州去泰国旅行七天，想住经济型酒店，请安排航班和景点。')">
+                    泰国轻松游
+                </button>
+
+                <button onclick="setPrompt('请查询全球实时航班信息。')">
+                    全球实时航班
+                </button>
+            </div>
+
+        </section>
+
+        <section id="resultSection" class="result-section hidden">
+
+            <div class="result-header">
+                <div>
+                    <h2>你的专属旅行方案</h2>
+                    <p id="threadInfo">会话编号：-</p>
+                </div>
+
+                <div class="result-actions">
+                    <button class="copy-btn" onclick="copyResult()">
+                        复制方案
+                    </button>
+
+                    <button class="download-btn" onclick="downloadPDF()">
+                        下载 PDF
+                    </button>
+                </div>
+            </div>
+
+            <div id="pdfContent" class="pdf-content">
+                <h1 class="pdf-title">TripMap 旅行方案</h1>
+                <div id="resultBox" class="result-box"></div>
+            </div>
+
+        </section>
+
+        <section id="errorBox" class="error-box hidden"></section>
+
+    </main>
+
+    <footer>
+        TripMap · 旅途从这里开始
+    </footer>
+
+    <!-- Markdown Renderer -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- PDF Download Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <!-- Your Custom JS -->
+    <script src="/static/script.js"></script>
+
+</body>
+</html>
